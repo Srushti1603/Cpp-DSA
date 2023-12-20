@@ -44,26 +44,17 @@ int count(struct Node *p)
     return c;
 }
 
-void Reverse(struct Node *p)
+void Reverse1(struct Node *p)
 {
-    int *A=new int[count(p)];
-    int i=0;
-    struct Node *q=p;
-    while(q!=NULL)
-    {
-        A[i]=q->data;
-        q=q->next;
-        i++;
-    }
-    q=p;
-    i--;
-    while (q!=NULL)
-    {
-       q->data=A[i];
-       q=q->next;
-       i--; 
-    }
-    
+   struct Node *q=NULL,*r=NULL;
+   while (p!=NULL)
+   {
+        r=q;
+        q=p;
+        p=p->next;
+        q->next=r;
+   }
+   first=q;
 }
 
 int main()
@@ -72,7 +63,7 @@ int main()
     create(A,5);
     cout<<"Elements before reversing"<<endl;
     Display(first);
-    Reverse(first);
+    Reverse1(first);
     cout<<"Elements after reversing"<<endl;
     Display(first);
     return 0;
